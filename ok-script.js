@@ -1,9 +1,9 @@
 function template(link, id) {
   return `<div id="ok_${id}" style="border: 0; padding: 0; margin: 0 auto; max-width: 100%;"></div>
 <script>
-!function (id, did, st) {
+!function (id, link, state) {
   if (window.OK) {
-    window.OK.CONNECT.insertContentWidget(id, link, st);
+    window.OK.CONNECT.insertContentWidget(id, link, state);
   } else {
     var js = document.createElement("script");
     js.src = "https://connect.ok.ru/connect.js";
@@ -13,7 +13,7 @@ function template(link, id) {
         if (!this.executed) {
           this.executed = true;
           setTimeout(function () {
-            window.OK.CONNECT.insertContentWidget(id, link, st);
+            window.OK.CONNECT.insertContentWidget(id, link, state);
           }, 0);
         }
       }
@@ -44,7 +44,7 @@ start.onclick = function () {
   if (input.value) {
     var link = input.value
     var id = makeid(10)
-    var html = template(link, makeid(id));
+    var html = template(link, id);
     code.textContent = html;
     content.innerHTML = `<div id="ok_${id}" style="border: 0; padding: 0; margin: 0 auto; max-width: 100%;"></div>`
 
